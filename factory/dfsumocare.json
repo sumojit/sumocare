@@ -1,0 +1,16 @@
+{
+	"name": "dfsumocare",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true,
+			"isExplicitlySet": false
+		}
+	},
+	"location": "indiasouthcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d650d76e-2f58-46c9-a140-369913ed1433",
+		"tenantId": "127fc8f0-68b9-4a57-80e3-431965624e68"
+	}
+}

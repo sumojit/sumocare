@@ -1,0 +1,138 @@
+{
+	"name": "PL_SOURCE_TO_SILVER_INNER",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Table Details",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT * FROM ctrl.table_config WHERE TABLE_ID=@{pipeline().parameters.table_id}",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DSSQLServerSumoCare",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "start_time",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "start_time",
+					"value": {
+						"value": "@formatDateTime(utcNow(),'yyyy-MM-dd_hh:mm:ss')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Get Table Details",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "start_time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "PostgreSqlV2Source",
+						"query": {
+							"value": "select * from public.@{activity('Get Table Details').output.firstRow.source_table_name}",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DSPostgreSqlSumoCare",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_ADLS_Parquet",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "landing",
+							"Folder": {
+								"value": "@concat(\nactivity('Get Table Details').output.firstRow.source_system,\n'/',\nactivity('Get Table Details').output.firstRow.source_table_name,\n'/',\nvariables('start_time')\n)",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"table_id": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"start_time": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-11-25T17:20:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

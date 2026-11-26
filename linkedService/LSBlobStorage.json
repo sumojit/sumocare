@@ -1,0 +1,12 @@
+{
+	"name": "LSBlobStorage",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://sumocareproject.blob.core.windows.net/",
+			"accountKind": "StorageV2"
+		}
+	}
+}

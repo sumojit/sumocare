@@ -1,0 +1,24 @@
+{
+	"name": "LSSqlDatabase",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "srvsumocare.database.windows.net",
+			"database": "DB_SumoCare",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "sumocare",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sumocare"
+			}
+		}
+	}
+}
