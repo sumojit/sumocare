@@ -48,7 +48,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "SourceToLanding",
 				"type": "Copy",
 				"dependsOn": [
 					{
