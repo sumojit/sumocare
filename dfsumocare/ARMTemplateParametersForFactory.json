@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "dfsumocare"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://kvsumocare.vault.azure.net/"
+		},
+		"LSBlobStorage_properties_typeProperties_serviceEndpoint": {
+			"value": "https://sumocareproject.blob.core.windows.net/"
+		},
+		"LSPostgreSql_properties_typeProperties_server": {
+			"value": "ep-solitary-hall-begkff2z-pooler.c-9.us-east-2.aws.neon.tech"
+		},
+		"LSPostgreSql_properties_typeProperties_database": {
+			"value": "neondb"
+		},
+		"LSPostgreSql_properties_typeProperties_username": {
+			"value": "neondb_owner"
+		},
+		"LSSqlDatabase_properties_typeProperties_server": {
+			"value": "srvsumocare.database.windows.net"
+		},
+		"LSSqlDatabase_properties_typeProperties_database": {
+			"value": "DB_SumoCare"
+		},
+		"LSSqlDatabase_properties_typeProperties_userName": {
+			"value": "sumocare"
+		}
+	}
+}

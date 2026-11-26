@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dfsumocare"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kvsumocare.vault.azure.net/"
+		},
+		"LSBlobStorage_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://sumocareproject.blob.core.windows.net/"
+		},
+		"LSPostgreSql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ep-solitary-hall-begkff2z-pooler.c-9.us-east-2.aws.neon.tech"
+		},
+		"LSPostgreSql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "neondb"
+		},
+		"LSPostgreSql_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "neondb_owner"
+		},
+		"LSSqlDatabase_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "srvsumocare.database.windows.net"
+		},
+		"LSSqlDatabase_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "DB_SumoCare"
+		},
+		"LSSqlDatabase_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sumocare"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "dfsumocare_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureKeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
+					},
+					"LSBlobStorage_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('LSBlobStorage_properties_typeProperties_serviceEndpoint')]"
+					},
+					"LSPostgreSql_properties_typeProperties_server": {
+						"value": "[parameters('LSPostgreSql_properties_typeProperties_server')]"
+					},
+					"LSPostgreSql_properties_typeProperties_database": {
+						"value": "[parameters('LSPostgreSql_properties_typeProperties_database')]"
+					},
+					"LSPostgreSql_properties_typeProperties_username": {
+						"value": "[parameters('LSPostgreSql_properties_typeProperties_username')]"
+					},
+					"LSSqlDatabase_properties_typeProperties_server": {
+						"value": "[parameters('LSSqlDatabase_properties_typeProperties_server')]"
+					},
+					"LSSqlDatabase_properties_typeProperties_database": {
+						"value": "[parameters('LSSqlDatabase_properties_typeProperties_database')]"
+					},
+					"LSSqlDatabase_properties_typeProperties_userName": {
+						"value": "[parameters('LSSqlDatabase_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
