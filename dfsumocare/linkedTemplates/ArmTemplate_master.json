@@ -11,6 +11,10 @@
 			"type": "string",
 			"defaultValue": "https://kvsumocare.vault.azure.net/"
 		},
+		"LSAzureDatabricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1126-050937-fhos4exn"
+		},
 		"LSBlobStorage_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://sumocareproject.blob.core.windows.net/"
@@ -71,6 +75,9 @@
 					},
 					"LSBlobStorage_properties_typeProperties_serviceEndpoint": {
 						"value": "[parameters('LSBlobStorage_properties_typeProperties_serviceEndpoint')]"
+					},
+					"LSAzureDatabricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('LSAzureDatabricks_properties_typeProperties_existingClusterId')]"
 					},
 					"LSPostgreSql_properties_typeProperties_server": {
 						"value": "[parameters('LSPostgreSql_properties_typeProperties_server')]"

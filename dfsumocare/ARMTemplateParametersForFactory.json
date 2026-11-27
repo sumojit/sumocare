@@ -8,6 +8,9 @@
 		"AzureKeyVault_properties_typeProperties_baseUrl": {
 			"value": "https://kvsumocare.vault.azure.net/"
 		},
+		"LSAzureDatabricks_properties_typeProperties_existingClusterId": {
+			"value": "1126-050937-fhos4exn"
+		},
 		"LSBlobStorage_properties_typeProperties_serviceEndpoint": {
 			"value": "https://sumocareproject.blob.core.windows.net/"
 		},
