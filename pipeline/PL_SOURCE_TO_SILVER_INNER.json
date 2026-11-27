@@ -240,8 +240,7 @@
 				"type": "string"
 			},
 			"adf_run_id": {
-				"type": "string",
-				"defaultValue": "a2"
+				"type": "string"
 			}
 		},
 		"variables": {
