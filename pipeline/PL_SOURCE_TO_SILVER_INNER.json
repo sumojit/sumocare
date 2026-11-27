@@ -157,7 +157,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "LSAzureDatabricksJobCluster",
+					"referenceName": "LSAzureDatabricks",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -194,7 +194,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "LSAzureDatabricksJobCluster",
+					"referenceName": "LSAzureDatabricks",
 					"type": "LinkedServiceReference"
 				}
 			},
