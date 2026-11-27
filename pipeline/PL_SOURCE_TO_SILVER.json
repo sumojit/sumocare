@@ -45,7 +45,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LookupMetadata').output.value",
+						"value": "@activity('Read Source Tables').output.value",
 						"type": "Expression"
 					},
 					"activities": [
