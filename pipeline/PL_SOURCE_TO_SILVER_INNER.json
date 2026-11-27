@@ -157,7 +157,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "LSAzureDatabricks",
+					"referenceName": "LSAzureDatabricksJobCluster",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -194,7 +194,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "LSAzureDatabricks",
+					"referenceName": "LSAzureDatabricksJobCluster",
 					"type": "LinkedServiceReference"
 				}
 			},
@@ -241,7 +241,7 @@
 			},
 			"adf_run_id": {
 				"type": "string",
-				"defaultValue": "a3"
+				"defaultValue": "a2"
 			}
 		},
 		"variables": {
