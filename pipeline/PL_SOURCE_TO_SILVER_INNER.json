@@ -382,7 +382,72 @@
 							]
 						},
 						{
-							"value": "adls_csv"
+							"value": "adls_csv",
+							"activities": [
+								{
+									"name": "Ingest CSV To Landing",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BinarySource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": false,
+												"modifiedDatetimeStart": {
+													"value": "@variables('watermark_value')",
+													"type": "Expression"
+												},
+												"deleteFilesAfterCompletion": false
+											},
+											"formatSettings": {
+												"type": "BinaryReadSettings"
+											}
+										},
+										"sink": {
+											"type": "BinarySink",
+											"storeSettings": {
+												"type": "AzureBlobStorageWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "DS_CSV_Binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"folder": {
+													"value": "@activity('Get Table Details').output.firstRow.source_path",
+													"type": "Expression"
+												},
+												"source": "source"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "DS_CSV_Binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"folder": {
+													"value": "@concat(\nactivity('Get Table Details').output.firstRow.source_system,\n'/',\nactivity('Get Table Details').output.firstRow.source_table_name,\n'/',\nvariables('start_time')\n)",
+													"type": "Expression"
+												},
+												"source": "landing"
+											}
+										}
+									]
+								}
+							]
 						}
 					]
 				}
