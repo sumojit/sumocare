@@ -48,6 +48,7 @@
 						"value": "@activity('Read Source Tables').output.value",
 						"type": "Expression"
 					},
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "Execute Pipeline",
@@ -154,11 +155,11 @@
 		"parameters": {
 			"source_system": {
 				"type": "string",
-				"defaultValue": "NEON_POSTGRES"
+				"defaultValue": "adls_csv"
 			},
 			"adf_run_id": {
 				"type": "string",
-				"defaultValue": "a3"
+				"defaultValue": "a8"
 			}
 		},
 		"variables": {
